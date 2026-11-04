@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MANDAVEL Portfolio – Un percorso tra concept da provare</title>
+<meta name="description" content="Il portfolio di MANDAVEL come percorso 3D: sette concept dimostrativi interattivi da attraversare, provare. Progetti realizzati a scopo espositivo.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=DM+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+<script>try{var t=localStorage.getItem("mv-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<style>
+:root{--bg:#06080d;--fg:#ece8dc;--mut:#8b93a7;--line:rgba(236,232,220,.16);--acc:#5b84ff;--bg2:#0e1424;--soft:#c9c6bb;--glass:rgba(6,8,13,.72);--ovbg:rgba(6,8,13,.92);--grid:rgba(120,150,255,.2);--sh:#000;--serif:"Bodoni Moda",Georgia,serif;--sans:"Schibsted Grotesk",system-ui,sans-serif;--mono:"DM Mono",ui-monospace,monospace}
+[data-theme=light]{color-scheme:light;--bg:#e9e6de;--bg2:#f8f6f0;--fg:#10131a;--mut:#5d6578;--line:rgba(16,19,26,.18);--acc:#2f5bea;--soft:#3a4152;--glass:rgba(238,236,230,.72);--ovbg:rgba(238,236,230,.94);--grid:rgba(47,91,234,.2);--sh:rgba(20,30,60,.35)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,var(--bg2) 0,var(--bg) 70%);color:var(--fg);font:400 16px/1.5 var(--sans)}
+.mono{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+#cam{position:fixed;inset:0;perspective:1100px;perspective-origin:50% 45%;overflow:hidden;touch-action:none;cursor:grab}
+#tilt,#world{position:absolute;inset:0;transform-style:preserve-3d}
+.floor{position:absolute;left:50%;top:50%;width:5000px;height:16000px;margin-left:-2500px;transform-origin:50% 0;transform:translate3d(0,340px,3000px) rotateX(-90deg);background:repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 125px),repeating-linear-gradient(0deg,var(--grid) 0 1px,transparent 1px 125px);-webkit-mask-image:linear-gradient(#000 45%,transparent);mask-image:linear-gradient(#000 45%,transparent)}
+.pn{position:absolute;left:50%;top:50%;width:min(1080px,88vw);transform-style:preserve-3d;will-change:transform,opacity}
+.card{position:relative;display:grid;grid-template-columns:1.35fr 1fr;gap:34px;align-items:center;transform-style:preserve-3d}
+.big{position:absolute;left:-2%;top:-34%;font:italic 500 clamp(160px,26vw,380px)/1 var(--serif);color:transparent;-webkit-text-stroke:1px var(--line);transform:translateZ(-160px);pointer-events:none;user-select:none}
+.screen{position:relative;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 0 0 1px var(--line),0 70px 130px -30px var(--c1),0 30px 60px -20px var(--sh);cursor:pointer;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.screen:hover{transform:translateZ(40px) scale(1.015)}
+.screen iframe{position:absolute;left:0;top:0;width:1280px;height:800px;border:0;transform-origin:0 0;pointer-events:none;background:#fff;opacity:0;transition:opacity .8s}
+.screen iframe.ok{opacity:1}
+.screen .tg{position:absolute;left:12px;bottom:10px;padding:4px 9px;border-radius:99px;background:rgba(0,0,0,.55);font:500 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#fff}
+.info{transform:translateZ(70px)}
+.info h2,.hero h1{font:500 clamp(34px,4.6vw,62px)/1 var(--serif);letter-spacing:-.02em;margin:10px 0 14px}
+.info p{color:var(--soft);font-size:15.5px}.tech{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.tech span{font:500 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border:1px solid var(--line);border-radius:99px;color:var(--mut)}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.btn{display:inline-flex;align-items:center;padding:10px 17px;border-radius:99px;border:1px solid var(--line);background:var(--glass);color:var(--fg);font:500 14px var(--sans);text-decoration:none;cursor:pointer;transition:transform .25s,background .25s,border-color .25s}
+.btn:hover{transform:translateY(-2px);border-color:var(--acc)}.btn.pri{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.hero{grid-template-columns:1fr;max-width:860px;margin:0 auto}.hero h1{font-size:clamp(38px,min(8vw,14vh),108px);line-height:.95}.hero h1 em{color:var(--acc)}
+.hero p{max-width:54ch;color:var(--soft);font-size:clamp(15px,2.5vh,18px)}.note{margin-top:clamp(12px,2.4vh,22px);max-width:56ch;padding:12px 16px;border:1px dashed var(--line);border-radius:10px;color:var(--mut);font-size:13.5px}.note b{color:var(--fg)}
+.rv{opacity:0;animation:up 1s cubic-bezier(.2,.8,.2,1) forwards}@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.mk{position:fixed;left:22px;top:calc(10px + env(safe-area-inset-top));z-index:3;display:block}.mk img{height:56px;width:auto;display:block}:root:not([data-theme=light]) .lg-l,[data-theme=light] .lg-d{display:none}
+.tr{position:fixed;right:22px;top:calc(14px + env(safe-area-inset-top));z-index:3;display:flex;gap:8px}
+#rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:4px}
+#rail button{display:flex;align-items:center;gap:10px;background:none;border:0;color:var(--mut);font:500 11px var(--mono);letter-spacing:.08em;cursor:pointer;padding:5px 0}
+#rail button:before{content:"";width:14px;height:1px;background:currentColor;transition:width .4s}
+#rail button span{opacity:0;transform:translateX(-6px);transition:.4s;white-space:nowrap}
+#rail button.on{color:var(--fg)}#rail button.on:before{width:34px;background:var(--acc)}#rail button.on span{opacity:1;transform:none}
+#hud{position:fixed;right:22px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:3;text-align:right}
+#hud b{display:block;font:italic 500 30px var(--serif)}
+#hint{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:3;transition:opacity .6s}
+.cd{position:fixed;left:22px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:3;max-width:34vw;transition:opacity .5s}body.h0 .cd{opacity:0}
+.ov{position:fixed;z-index:10;background:var(--ovbg);backdrop-filter:blur(18px);visibility:hidden;opacity:0;transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.2,1),visibility .5s}
+.ov.on{visibility:visible;opacity:1;transform:none}
+#idx{inset:0;padding:90px 7vw 40px;overflow:auto;transform:scale(1.04)}
+#idx .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.chip{padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--mut);font:500 13px var(--sans);cursor:pointer}.chip[aria-pressed=true]{background:var(--fg);color:var(--bg)}
+.row{display:grid;grid-template-columns:70px 1fr auto;gap:16px;align-items:baseline;width:100%;padding:16px 0;border:0;border-top:1px solid var(--line);background:none;color:var(--fg);text-align:left;cursor:pointer;transition:opacity .3s,padding .3s}
+.row:hover{padding-left:14px}.row b{font:italic 500 28px var(--serif);color:var(--acc)}.row span{font:500 clamp(22px,3.4vw,40px)/1.1 var(--serif)}.row em{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-style:normal}.row.dim{opacity:.22}
+#info{top:0;right:0;bottom:0;width:min(480px,100vw);padding:80px 32px 40px;overflow:auto;transform:translateX(40px);border-left:1px solid var(--line)}
+#info h2{font:500 40px/1.05 var(--serif);margin:10px 0 6px}#info dt{margin-top:20px;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}#info dd{margin-top:5px}#info ul{padding-left:18px}#info li{margin:4px 0}.lim{border-left:2px solid var(--acc);padding-left:12px;color:var(--soft);font-size:14px}
+#idx.on,#info.on{transform:none}
+.x{position:absolute;right:22px;top:calc(14px + env(safe-area-inset-top))}
+#viewer{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;flex-direction:column;visibility:hidden}
+#viewer.on{visibility:visible;animation:vo .8s cubic-bezier(.7,0,.2,1)}
+#viewer.cl{visibility:visible;animation:vc .8s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes vo{from{clip-path:circle(0 at 50% 55%)}to{clip-path:circle(150% at 50% 55%)}}@keyframes vc{from{clip-path:circle(150% at 50% 55%)}to{clip-path:circle(0 at 50% 55%)}}
+.vbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));border-bottom:1px solid var(--line)}.vbar .t{flex:1;min-width:150px}.vbar .t b{display:block;font:500 17px var(--serif)}.vbar .btn{padding:8px 13px;font-size:13px}
+#frame{flex:1;min-height:0;border:0;width:100%;background:#fff}
+@media(max-width:820px){.card{grid-template-columns:1fr;gap:18px}.info{transform:translateZ(40px)}.info p{font-size:14px}.tech{display:none}.info h2{font-size:32px;margin:6px 0 8px}.big{top:-26%}#rail button span,.cd{display:none}#rail{left:10px}.mk{left:14px}.tr{right:14px}.mk img{height:42px}.act{margin-top:12px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.rv{opacity:1}}
+@media(max-width:1499px){#rail button span{display:none}}
+@media(max-height:700px){.info h2{font-size:clamp(30px,4vw,44px)}.info p{font-size:14px}.tech{display:none}}
+::view-transition{background:#04060a}
+::view-transition-group(root){animation-duration:1.2s}
+::view-transition-old(root),::view-transition-new(root){mix-blend-mode:normal;transform-origin:50% 50%;animation-duration:1.2s;animation-timing-function:cubic-bezier(.7,0,.15,1);animation-fill-mode:both}
+::view-transition-old(root){animation-name:tvo}::view-transition-new(root){animation-name:tvn}
+@keyframes tvo{to{transform:perspective(1800px) translateZ(-520px) rotateY(-62deg);filter:blur(8px) brightness(1.5);opacity:0}}
+@keyframes tvn{from{transform:perspective(1800px) translateZ(-520px) rotateY(62deg);filter:blur(8px) brightness(1.5);opacity:0}}
+@media(max-width:820px){#rail{left:50%;top:auto;bottom:calc(10px + env(safe-area-inset-bottom));transform:translateX(-50%);flex-direction:row;gap:0}#rail button{font-size:0;gap:0;padding:12px 3px}#rail button:before{width:12px;height:3px;border-radius:2px}#rail button.on:before{width:24px}#hud{bottom:calc(26px + env(safe-area-inset-bottom))}#hud b{font-size:22px}#cat,#hint{display:none}.note{font-size:12px;padding:10px 12px;margin-top:12px}.hero p{font-size:14px}}
+.btn.pk{position:relative;overflow:hidden;gap:10px;background:linear-gradient(120deg,#2f5bea,#5b84ff);border-color:transparent;color:#fff;padding-right:12px}.pk span,.pk em{position:relative}.pk em{font:italic 500 14px var(--serif);padding:2px 10px;border-radius:99px;background:rgba(255,255,255,.2)}
+.pk:after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-160%) skewX(-20deg);animation:shn 3.6s ease-in-out infinite}@keyframes shn{0%,55%{transform:translateX(-160%) skewX(-20deg)}100%{transform:translateX(420%) skewX(-20deg)}}.btn.pk:hover{box-shadow:0 10px 28px -8px #5b84ff;border-color:transparent}
+</style>
+</head>
+<body class="h0">
+<canvas id="fx"></canvas>
+<div id="cam"><div id="tilt"><div id="world"><div class="floor"></div></div></div></div>
+<a class="mk" href="#" aria-label="MANDAVEL"><img class="lg-d" src="assets/logo-mandavel-sfondo-scuro.png" alt="MANDAVEL"><img class="lg-l" src="assets/logo-mandavel-sfondo-chiaro.png" alt="MANDAVEL"></a>
+<div class="tr"><button class="btn" id="bth" type="button" aria-label="Cambia tema"><span id="thl">Tema chiaro</span></button><button class="btn" id="bidx" type="button">Indice</button></div>
+<nav id="rail" aria-label="Percorso dei concept"></nav>
+<div class="cd mono">Concept dimostrativi a scopo espositivo · dati fittizi</div>
+<div id="hint" class="mono">Scorri · trascina · frecce</div>
+<div id="hud"><b id="cnt"></b><span class="mono" id="cat"></span></div>
+
+<div id="idx" class="ov" inert><button class="btn x" data-close type="button">Chiudi</button><p class="mono" style="margin-bottom:14px">Indice dei concept</p><div class="chips" id="chips"></div><div id="rows"></div></div>
+<aside id="info" class="ov" inert aria-label="Scheda del concept"><button class="btn x" data-close type="button">Chiudi</button><div class="in"></div></aside>
+<div id="viewer" role="dialog" aria-modal="true" aria-label="Concept dimostrativo"><div class="vbar"><div class="t"><b id="vt"></b><span class="mono">Concept dimostrativo · dati fittizi</span></div><a class="btn" id="vopen" target="_blank" rel="noopener">Schermo intero</a><a class="btn pk" id="vdl" href="pacchetti.html"><span>Scopri i pacchetti</span><em>da €149</em></a><button class="btn pri" id="vclose" type="button">Torna al percorso</button></div><iframe id="frame" title="Concept" sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-popups"></iframe></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],pad=n=>String(n).padStart(2,"0");
+const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const P=[
+{id:"01",file:"01-calce-cantiere.html",title:"Calce & Cantiere",cat:"Siti e landing",type:"Landing page",tech:["3D WebGL","Landing"],c1:"#7a4a2b",c2:"#1b1410",
+ lead:"Landing page per un’impresa di ristrutturazioni fittizia: la casa in 3D è l’interfaccia e ogni stanza è una sezione.",
+ need:"Chi ristruttura non sa cosa dire all’impresa né cosa aspettarsi dal preventivo. Obiettivo unico della pagina: la richiesta di preventivo.",
+ sol:"Una pianta 3D da attraversare: ogni stanza spiega un pezzo del percorso, fino al modulo di richiesta.",
+ feat:["Navigazione dalle etichette della pianta o con le frecce della tastiera","Tavole per stanza: soggiorno, bagno, cucina e appartamento intero","Risposte ai tre dubbi prima di cominciare","Percorso in quattro passaggi dalla richiesta al preventivo","Modulo guidato con simulazione di invio"],
+ note:"Usa Three.js da CDN: serve connessione a internet. L’invio del modulo è simulato."},
+{id:"02",file:"02-calce-studio.html",title:"Calce Studio",cat:"Siti e landing",type:"Sito aziendale",tech:["3D CSS","Sito"],c1:"#c9b79c",c2:"#3d3126",
+ lead:"Sito aziendale immersivo per uno studio d’interni fittizio, costruito attorno all’idea della casa come modello di luce.",
+ need:"Uno studio d’interni deve far capire metodo e progetti senza ricorrere a foto generiche.",
+ sol:"Un sito a sezioni con progetti raccontati come problema e soluzione, effetto 3D in CSS puro.",
+ feat:["Sezioni: Ingresso, Studio, Servizi, Progetti, Contatti","Schede progetto con problema e soluzione","3D in CSS puro, senza WebGL","Variante «modello compatto»","Modulo contatti dimostrativo"],
+ note:"Nessuna foto: le immagini sono costruite in CSS. Il modulo contatti non invia nulla."},
+{id:"03",file:"03-tassello.html",title:"Tassello",cat:"App e gestionali",type:"Richieste e prenotazioni",tech:["3D CSS","Offline"],c1:"#e0a82e",c2:"#2a2417",
+ lead:"Sistema digitale per richieste di preventivo e prenotazioni di piccoli interventi di manutenzione, per un’impresa di fantasia.",
+ need:"Un’impresa di piccola manutenzione ha richieste e appuntamenti da gestire in un unico posto.",
+ sol:"Una vista pubblica per chiedere preventivo e prenotare, e un’area di gestione per l’impresa.",
+ feat:["Vista pubblica per richieste e prenotazioni","Area Gestione per l’impresa","Disponibilità, validazioni e raccomandazione calcolate dal sistema","Modello 3D in CSS come scena di navigazione","Font incorporati e nessuna libreria: funziona senza rete","Pulsante per ripristinare i dati di esempio"],
+ note:"I dati restano nel browser (localStorage) e non sono visibili da altri dispositivi. Nessuna email, SMS o chiamata reale. Non inserire dati personali veri."},
+{id:"04",file:"04-officina-del-chicco.html",title:"Officina del Chicco",cat:"E-commerce",type:"Negozio online",tech:["3D","Carrello"],c1:"#7b3f1d",c2:"#160e09",
+ lead:"Negozio dimostrativo di una torrefazione artigianale, con carosello 3D rotante, carrello e checkout simulato.",
+ need:"Una torrefazione artigianale vuole vendere online con un’esperienza all’altezza del prodotto.",
+ sol:"Catalogo di 8 prodotti con esperienza immersiva, dal carosello al carrello.",
+ feat:["Carosello 3D rotante dei prodotti","Catalogo: caffè, box e regali, accessori (8 prodotti)","Carrello e checkout simulato","Prodotti disegnati come modelli grafici originali, non fotografie"],
+ note:"Nessun ordine né pagamento reale. Il nome è provvisorio. Per vendere davvero servirebbero provider di pagamento, fiscalità, condizioni di vendita, spedizioni, resi, privacy e sicurezza."},
+{id:"05",file:"05-atelier-corvane-dashboard.html",title:"Atelier Corvane",cat:"Dashboard e dati",type:"Dashboard commerciale",tech:["Grafici 3D","Filtri"],c1:"#2f6f6a",c2:"#0e1a1a",
+ lead:"Dashboard commerciale per uno studio di interior design fittizio: dalle richieste agli ordini, con una vista 3D dell’andamento mensile.",
+ need:"Capire a colpo d’occhio come avanzano richieste, preventivi e ordini.",
+ sol:"KPI, percorso commerciale e dettaglio dei record, filtrabili per periodo, servizio e stato.",
+ feat:["KPI: richieste, preventivi, ordini, ricavi dimostrativi, tasso di avanzamento","Grafico mensile in 3D da ruotare o muovere con le frecce","Filtri per date, servizio e stato","Pipeline aperta e preventivi fermi","Tabella di dettaglio delle richieste","Sezione su come si collegherebbe a dati reali"],
+ note:"Dataset dimostrativo: i numeri e i ricavi sono fittizi."},
+{id:"06",file:"06-mandavel-assist.html",title:"Mandavel Assist",cat:"Assistenti",type:"Assistente FAQ",tech:["Regole","Test"],c1:"#5a4bd6",c2:"#14112b",
+ lead:"Assistente FAQ su misura per un’attività inventata (Atelier Luce), con un banco di prova integrato.",
+ need:"Rispondere alle domande ricorrenti dei clienti senza perdere quelle per cui serve una persona.",
+ sol:"Un motore locale a regole che risponde, riconosce le domande ambigue o senza risposta e passa la mano a un operatore.",
+ feat:["Conversazione con l’assistente di un’attività fittizia","Banco di prova: ogni test confronta il comportamento ottenuto con quello atteso","Filtri per categoria (coperte, ambigue, senza risposta) ed esito","Passaggio a un operatore simulato"],
+ note:"Motore a regole: nessun modello linguistico, nessun embedding, nessun salvataggio delle conversazioni. Il passaggio all’operatore è simulato."},
+{id:"07",file:"07-mandavel-client-space.html",title:"Mandavel Client Space",cat:"App e gestionali",type:"Area clienti",tech:["3D WebGL","Portale"],c1:"#34507f",c2:"#0b0f18",
+ lead:"Portale cliente letto come un fascicolo di tavole di progetto, attorno alla maquette 3D di un appartamento.",
+ need:"Far seguire al cliente lo stato del proprio progetto senza telefonate ed email sparse.",
+ sol:"Una maquette 3D i cui arredi cambiano con lo stato dell’ordine, un anello con le fasi e i documenti a portata di mano.",
+ feat:["Maquette 3D dell’appartamento che cambia con lo stato dell’ordine","Anello con le sette fasi del progetto","Documenti di progetto: planimetria, moodboard, distribuzione, preventivo, incarico","Stati a colori: ambra serve il cliente, azzurro in corso, verde fatto, grigio in pausa, rosso errore"],
+ note:"Accesso non reale e dati fittizi. L’incarico professionale è un documento dimostrativo senza valore legale. Usa Three.js da CDN: serve connessione a internet."}
+];
+const N=P.length+1,SP=1500,clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const world=$("#world"),tilt=$("#tilt");
+// Pannelli
+world.insertAdjacentHTML("beforeend",`<section class="pn" aria-label="Inizio"><div class="card hero"><div class="mono rv" style="animation-delay:.3s">Catalogo digitale dei concept</div><h1 class="rv" style="animation-delay:.5s">Non leggere cosa sappiamo fare. <em>Provalo.</em></h1><p class="rv" style="animation-delay:.8s">Un percorso in profondità attraverso ${P.length} concept interattivi. Ogni tappa si apre e si usa.</p><div class="act rv" style="animation-delay:1s"><button class="btn pri" data-go="1" type="button">Inizia il percorso</button><button class="btn" id="b2" type="button">Apri l’indice</button></div><p class="note rv" style="animation-delay:1.2s"><b>Progetti dimostrativi realizzati a scopo espositivo.</b> Aziende, nomi e dati sono fittizi: non sono lavori per clienti reali e non ci sono recensioni né risultati inventati.</p></div></section>`);
+P.forEach(p=>world.insertAdjacentHTML("beforeend",`<section class="pn" aria-label="${p.title}" style="--c1:${p.c1};--c2:${p.c2}"><div class="card"><div class="big" aria-hidden="true">${p.id}</div>
+<div class="screen" data-open="${p.id}"><iframe title="Anteprima di ${p.title}" tabindex="-1" aria-hidden="true" sandbox="allow-scripts allow-same-origin"></iframe><span class="tg">Anteprima dal vivo</span></div>
+<div class="info"><span class="mono">${p.cat} · ${p.type}</span><h2>${p.title}</h2><p>${p.lead}</p><div class="tech">${p.tech.map(t=>`<span>${t}</span>`).join("")}</div>
+<div class="act"><button class="btn pri" data-open="${p.id}" type="button">Entra nel concept</button><button class="btn" data-info="${p.id}" type="button">Scheda</button><a class="btn pk" href="pacchetti.html" aria-label="Scopri i pacchetti MANDAVEL, da 149 euro"><span>Scopri i pacchetti</span><em>da €149</em></a></div></div></div></section>`));
+const pns=$$(".pn");
+$("#rail").innerHTML=pns.map((_,i)=>`<button type="button" data-go="${i}" aria-label="${i?P[i-1].title:"Inizio"}">${i?pad(i):"00"}<span>${i?P[i-1].title:"Inizio"}</span></button>`).join("");
+$("#rows").innerHTML=P.map((p,i)=>`<button class="row" data-go="${i+1}" data-cat="${p.cat}" type="button"><b>${p.id}</b><span>${p.title}</span><em>${p.cat}</em></button>`).join("");
+const cats=["Tutti",...new Set(P.map(p=>p.cat))];
+$("#chips").innerHTML=cats.map((c,i)=>`<button class="chip" data-c="${c}" aria-pressed="${!i}" type="button">${c}</button>`).join("");
+$("#chips").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;$$(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));$$(".row").forEach(r=>r.classList.toggle("dim",b.dataset.c!=="Tutti"&&r.dataset.cat!==b.dataset.c))};
+// Stato
+let busy=0,dirty=1,lastT=0,lastC=0,target=0,cam=RM?0:-.9,mx=0,my=0,rx=0,ry=0,active=-1,tm,prev=cam;
+const sc=()=>$$(".screen").forEach(s=>s.firstElementChild.style.transform=`scale(${s.clientWidth/1280})`);sc();addEventListener("resize",sc);
+const xs=i=>i?(i%2?1:-1)*Math.min(innerWidth*.07,90):0;
+const go=i=>{target=clamp(Math.round(i),0,N-1);$("#hint").style.opacity=0};
+function setActive(a){active=a;document.body.classList.toggle("h0",!a);$$("#rail button").forEach((b,i)=>b.classList.toggle("on",i===a));
+ $("#cnt").textContent=a?pad(a)+" / "+pad(P.length):"Inizio";$("#cat").textContent=a?P[a-1].cat:"Scorri per entrare";
+ clearTimeout(tm);tm=setTimeout(()=>pns.forEach((p,i)=>{const f=p.querySelector("iframe");if(!f)return;
+  if(i===active&&!f.dataset.l){f.dataset.l=1;f.src="progetti/"+P[i-1].file;f.onload=()=>f.classList.add("ok")}
+  else if(i!==active&&f.dataset.l){delete f.dataset.l;f.classList.remove("ok");f.removeAttribute("src");f.src="about:blank"}}),500)}
+// Particelle di profondità (tratti raggruppati per fascia: poche chiamate di disegno)
+const cv=$("#fx"),g=cv.getContext("2d");let W,H,pc="190,205,255";const pts=[...Array(120)].map(()=>({x:Math.random()*2-1,y:Math.random()*2-1,w:Math.random()*.95+.05}));
+const rs=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight;dirty=1;sc()};rs();addEventListener("resize",rs);
+function draw(v,dt){g.clearRect(0,0,W,H);g.lineCap="round";const B=[[],[],[],[],[],[]];
+ for(const p of pts){p.w-=v*.35+.0005*dt;if(p.w<.03){p.w=1;p.x=Math.random()*2-1;p.y=Math.random()*2-1}if(p.w>1)p.w=.03;
+  const k=W*.045/p.w,k2=W*.045/(p.w+v*.35);B[Math.min(5,p.w*6|0)].push(W/2+p.x*k2,H*.45+p.y*k2,W/2+p.x*k,H*.45+p.y*k)}
+ B.forEach((b,i)=>{if(!b.length)return;const w=(i+.5)/6;g.strokeStyle=`rgba(${pc},${(1-w)*.75})`;g.lineWidth=Math.max(.6,2.2*(1-w));g.beginPath();for(let j=0;j<b.length;j+=4){g.moveTo(b[j],b[j+1]);g.lineTo(b[j+2],b[j+3])}g.stroke()})}
+// Tema chiaro/scuro con transizione 3D (View Transitions API; senza supporto il cambio è immediato)
+const root=document.documentElement;
+function setTheme(t,save){root.dataset.theme=t;pc=t==="light"?"40,70,160":"190,205,255";$("#thl").textContent=t==="light"?"Tema scuro":"Tema chiaro";if(save)try{localStorage.setItem("mv-theme",t)}catch(e){}}
+setTheme(root.dataset.theme==="light"?"light":"dark");
+$("#bth").onclick=()=>{const t=root.dataset.theme==="light"?"dark":"light";if(RM||!document.startViewTransition){setTheme(t,1);return}document.startViewTransition(()=>setTheme(t,1))};
+// Ciclo di animazione: aggiorna solo ciò che cambia, in pausa quando un pannello è aperto
+function frame(t){requestAnimationFrame(frame);if(busy){lastT=t;return}
+ const dt=Math.min(3,(t-lastT)/16.7||1);lastT=t;const mv=cam!==target;
+ if(mv){cam+=(target-cam)*(RM?1:1-Math.pow(.93,dt));if(Math.abs(target-cam)<.0004)cam=target}
+ if(Math.abs(my*-5-rx)>.004||Math.abs(mx*7-ry)>.004){const k=1-Math.pow(.94,dt);rx+=(my*-5-rx)*k;ry+=(mx*7-ry)*k;tilt.style.transform=`rotateX(${rx.toFixed(3)}deg) rotateY(${ry.toFixed(3)}deg)`}
+ if(mv||dirty){dirty=0;const lo=Math.floor(cam),f=cam-lo,cx=xs(lo)+(xs(Math.min(lo+1,N-1))-xs(lo))*f;
+  world.style.transform=`translate3d(${-cx}px,0,${cam*SP}px)`;
+  pns.forEach((p,i)=>{const d=i-cam,o=d>=0?(1-Math.min(d,1))**2:clamp(1+d*2.4,0,1);
+   if(o<.01){if(p._v!==0){p.style.visibility="hidden";p._v=0}if(p._on!==false){p._on=false;p.inert=true}return}
+   if(p._v!==1){p.style.visibility="visible";p._v=1}p.style.opacity=o;
+   p.style.transform=`translate(-50%,-50%) translate3d(${xs(i)}px,0,${-i*SP}px) rotateY(${(i%2?-1:1)*Math.max(0,d)*14}deg)`;
+   const on=Math.abs(d)<.35;if(p._on!==on){p._on=on;p.inert=!on}});
+  const a=Math.round(cam);if(a!==active)setActive(a)}
+ const v=cam-prev;prev=cam;if(!RM&&(mv||t-lastC>45)){lastC=t;draw(v,dt)}}
+requestAnimationFrame(frame);
+// Input
+const open=()=>$(".ov.on,#viewer.on");let snap,dy=0,drag=0,moved=0;
+addEventListener("wheel",e=>{if(open())return;target=clamp(target+e.deltaY*.0011,0,N-1);$("#hint").style.opacity=0;clearTimeout(snap);snap=setTimeout(()=>target=Math.round(target),170)},{passive:true});
+addEventListener("pointermove",e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;if(drag){const d=e.clientY-dy;dy=e.clientY;if(Math.abs(d)>0)moved+=Math.abs(d);target=clamp(target-d/innerHeight*1.3,0,N-1)}});
+$("#cam").addEventListener("pointerdown",e=>{if(open())return;drag=1;dy=e.clientY;moved=0});
+addEventListener("pointerup",()=>{if(!drag)return;drag=0;target=Math.round(target);if(moved<8)moved=0;else setTimeout(()=>moved=0,60)});
+const ovs=n=>{["idx","info"].forEach(k=>{const e=$("#"+k);e.classList.toggle("on",k===n);e.inert=k!==n});busy=!!open()};
+function info(id){const p=P.find(x=>x.id===id);$("#info .in").innerHTML=`<span class="mono">${p.cat} · ${p.type}</span><h2>${p.title}</h2><dl><dt>Obiettivo</dt><dd>${p.need}</dd><dt>Soluzione</dt><dd>${p.sol}</dd><dt>Funzioni principali</dt><dd><ul>${p.feat.map(f=>`<li>${f}</li>`).join("")}</ul></dd><dt>Limiti dichiarati</dt><dd class="lim">${p.note}</dd></dl>`;ovs("info")}
+document.addEventListener("click",e=>{if(moved){e.preventDefault();e.stopPropagation();return}
+ const t=e.target.closest("[data-open],[data-go],[data-info],[data-close]");if(!t)return;
+ if(t.dataset.open)location.hash="prova-"+t.dataset.open;else if(t.dataset.go!==undefined){go(+t.dataset.go);ovs(0)}else if(t.dataset.info)info(t.dataset.info);else ovs(0)},true);
+$("#bidx").onclick=()=>ovs("idx");$("#b2").onclick=()=>ovs("idx");
+addEventListener("keydown",e=>{if(e.key==="Escape"){if($("#viewer.on"))$("#vclose").click();else ovs(0);return}if(open())return;
+ const k=e.key;if(["ArrowDown","ArrowRight","PageDown"," "].includes(k)){e.preventDefault();go(Math.round(target)+1)}else if(["ArrowUp","ArrowLeft","PageUp"].includes(k)){e.preventDefault();go(Math.round(target)-1)}else if(k==="Home")go(0);else if(k==="End")go(N-1);else if(k==="i"||k==="I")ovs("idx")});
+// Visualizzatore
+let vt;
+function show(){const m=location.hash.match(/^#prova-(\d+)$/),p=m&&P.find(x=>x.id===m[1]),v=$("#viewer");
+ if(!p){if(v.classList.contains("on")){v.classList.remove("on");v.classList.add("cl");clearTimeout(vt);vt=setTimeout(()=>{v.classList.remove("cl");if(!v.classList.contains("on")){$("#frame").src="about:blank";setActive(active)}},820)}busy=!!open();return}
+ $("#vt").textContent=p.id+" · "+p.title;$("#frame").title="Concept: "+p.title;$("#frame").src="progetti/"+p.file;$("#vopen").href="progetti/"+p.file;ovs(0);clearTimeout(vt);v.classList.remove("cl");pns.forEach(q=>{const f=q.querySelector("iframe");if(f&&f.dataset.l){delete f.dataset.l;f.classList.remove("ok");f.src="about:blank"}});v.classList.add("on");busy=1;$("#vclose").focus()}
+addEventListener("hashchange",show);show();
+$("#vclose").onclick=()=>{history.replaceState(null,"",location.pathname+location.search);show()};
+</script>
+</body>
+</html>
