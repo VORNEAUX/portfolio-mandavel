@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<script>/* anteprima nel portfolio (?pv=1): pixel ratio 1, animazioni in pausa durante gli spostamenti di camera, 30 fps su touch */
+(function(){if(!/[?&]pv=1/.test(location.search))return;try{Object.defineProperty(window,"devicePixelRatio",{get:function(){return 1},configurable:true})}catch(e){}
+var rr=window.requestAnimationFrame.bind(window),cr=window.cancelAnimationFrame.bind(window),map={},seq=0,last=-1,lite=matchMedia("(pointer:coarse)").matches,st=null,h=false;
+window.requestAnimationFrame=function(cb){var id=++seq;(function q(){map[id]=rr(function(t){if(h||(lite&&t!==last&&t-last<28)){q();return}last=t;delete map[id];cb(t)})})();return id};
+window.cancelAnimationFrame=function(id){if(map[id]!=null){cr(map[id]);delete map[id]}};
+Object.defineProperty(window,"__pvHold",{configurable:true,get:function(){return h},set:function(v){v=!!v;if(v===h)return;h=v;if(!st){st=document.createElement("style");st.textContent="*,*:before,*:after{animation-play-state:paused!important}"}
+ if(h)(document.head||document.documentElement).appendChild(st);else if(st.parentNode)st.parentNode.removeChild(st)}})})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calce &amp; Cantiere – Ristrutturazioni d’interni (concept dimostrativo MANDAVEL)</title>
+<meta name="description" content="Concept dimostrativo: una landing page in cui la casa in 3D è l’interfaccia. Ogni stanza è una sezione. Progetto P1 del portfolio MANDAVEL.">
+<meta property="og:title" content="Calce &amp; Cantiere – Ristrutturare casa senza partire alla cieca">
+<meta property="og:description" content="Entra stanza per stanza in una casa in 3D e arriva alla richiesta di preventivo. Concept dimostrativo MANDAVEL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#ECE8DC;--sheet:#F7F5EE;--ink:#12233F;--mute:#55627A;--or:#FF5A1F;--line:rgba(18,35,63,.28);--err:#B3261E;--ok:#1E6B3A;--ez:cubic-bezier(.65,0,.2,1)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden;overscroll-behavior:none}
+body{background:linear-gradient(rgba(18,35,63,.07) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(18,35,63,.07) 1px,transparent 1px) 0 0/32px 32px,var(--paper);color:var(--ink);font:400 1.02rem/1.55 "Bricolage Grotesque","Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.03em;line-height:1.02}
+h1{font-size:clamp(2rem,4.2vw,3.4rem)}h2{font-size:clamp(1.7rem,3vw,2.4rem)}h3{font-size:1.1rem;letter-spacing:-.01em}
+p{margin:0 0 .9em}a{color:inherit}
+.m,.tag,.hd,label,.hint,.err,.note{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.m{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase}
+:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.num{position:fixed;right:5vw;bottom:-6vw;font:800 38vw/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px rgba(18,35,63,.17);pointer-events:none;user-select:none;will-change:transform}
+#gl{position:fixed;inset:0;width:100%;height:100%}
+.logo{position:fixed;top:1.2rem;left:clamp(1rem,3vw,2.5rem);font-weight:800;font-size:1.25rem;letter-spacing:-.03em;text-decoration:none;z-index:5}
+.logo i{font-style:normal;color:var(--or)}
+/* tavola (pannello) */
+#tav{position:fixed;left:clamp(1rem,3vw,2.5rem);top:4.6rem;bottom:1.6rem;width:min(500px,42vw);overflow:auto;background:var(--sheet);border:1.5px solid var(--ink);box-shadow:9px 9px 0 var(--ink);z-index:4;scrollbar-width:thin}
+.sheet{padding:0 1.5rem 2rem}
+.sheet[hidden]{display:none}
+.sheet:not(.show){opacity:0;transition:opacity .2s}
+.sheet>*{opacity:0;transform:translateY(16px)}
+.sheet.show>*{animation:in .8s var(--ez) forwards;animation-delay:calc(var(--i,0)*80ms + 40ms)}
+@keyframes in{to{opacity:1;transform:none}}
+.hd{position:sticky;top:0;z-index:2;background:var(--sheet);display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;margin-bottom:1.2rem;border-bottom:1.5px solid var(--ink);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase}
+.lead{font-size:1.15rem;margin-top:1rem;max-width:40ch}
+.btn{display:inline-block;font:700 1rem/1 "Bricolage Grotesque",sans-serif;padding:1rem 1.3rem;min-height:48px;background:var(--or);color:#fff;border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);text-decoration:none;cursor:pointer;transition:transform .2s var(--ez),box-shadow .2s var(--ez)}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 var(--ink)}
+.btn.ghost{background:var(--sheet);color:var(--ink)}
+.btn[disabled]{opacity:.6;cursor:progress}
+.row{display:flex;flex-wrap:wrap;gap:.9rem;margin:1.4rem 0 .4rem}
+.note{font-size:.78rem;line-height:1.5;color:var(--mute)}
+/* contenuti diversi per ogni stanza */
+.big{list-style:none;margin:1.2rem 0 0;padding:0;counter-reset:b}
+.big li{counter-increment:b;display:grid;grid-template-columns:3.2rem 1fr;gap:.2rem;padding:1rem 0;border-top:1.5px solid var(--ink)}
+.big li::before{content:counter(b);grid-row:1/3;font-weight:800;font-size:2.6rem;line-height:.9;color:var(--or)}
+.big p{margin:0;color:var(--mute)}
+.spec{margin:1.2rem 0 0;display:grid;grid-template-columns:7.5rem 1fr;border-top:1.5px solid var(--ink)}
+.spec dt,.spec dd{margin:0;padding:.8rem 0;border-bottom:1px solid var(--line)}
+.spec dt{font:500 .72rem/1.5 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--or);padding-right:.6rem}
+.tl{list-style:none;margin:1.2rem 0 0;padding:0 0 0 1.6rem;border-left:2px solid var(--ink);counter-reset:t}
+.tl li{counter-increment:t;position:relative;padding:0 0 1.2rem}
+.tl li::before{content:counter(t,decimal-leading-zero);position:absolute;left:-2.75rem;top:0;width:2rem;height:2rem;display:grid;place-items:center;background:var(--or);color:#fff;border:1.5px solid var(--ink);font:500 .72rem "IBM Plex Mono",monospace}
+.tl p{margin:0;color:var(--mute)}
+details{border-top:1.5px solid var(--ink)}details:last-of-type{border-bottom:1.5px solid var(--ink)}
+summary{cursor:pointer;font-weight:700;padding:.95rem 2rem .95rem 0;list-style:none;position:relative;min-height:48px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:.2rem;top:.6rem;font-size:1.5rem;color:var(--or);transition:transform .25s var(--ez)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--mute);margin-bottom:1rem}
+/* form */
+.alert{border:1.5px dashed var(--or);padding:.7rem .9rem;font:500 .8rem/1.5 "IBM Plex Mono",monospace;margin:1rem 0}
+.f{display:flex;flex-direction:column;gap:.25rem;margin-bottom:.9rem}
+label{font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.hint{font-size:.72rem;color:var(--mute)}
+input,select,textarea{font:400 1rem/1.4 "Bricolage Grotesque",sans-serif;padding:.75rem;min-height:48px;width:100%;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:0}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{box-shadow:4px 4px 0 var(--or);outline:none}
+[aria-invalid="true"]{border-color:var(--err);box-shadow:4px 4px 0 var(--err)}
+.err{color:var(--err);font-size:.76rem;margin:0}
+.chk{display:flex;gap:.7rem;align-items:flex-start}.chk input{width:24px;height:24px;min-height:24px;flex:none}.chk label{text-transform:none;font-weight:400;letter-spacing:0;font-size:.78rem}
+.result{border:1.5px solid var(--ok);padding:1.2rem}.result h3{color:var(--ok);margin-bottom:.4rem}
+[hidden]{display:none!important}
+.tri{margin:1.4rem 0 0;padding:0;list-style:none;font-size:.9rem;color:var(--mute)}.tri li{padding:.5rem 0;border-top:1px solid var(--line)}.tri b{color:var(--ink)}
+/* etichette nella scena e binario */
+.tag{position:fixed;left:0;top:0;z-index:3;padding:.4rem .6rem;min-height:34px;background:var(--sheet);color:var(--ink);border:1.5px solid var(--ink);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap;will-change:transform;transition:background .25s,color .25s,box-shadow .25s}
+.tag:hover{box-shadow:3px 3px 0 var(--ink)}
+.tag.on{background:var(--or);color:#fff}
+.rail{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;align-items:flex-end;gap:.15rem}
+.rail button{display:flex;align-items:center;gap:.6rem;min-height:36px;padding:0 .3rem;background:none;border:0;color:var(--mute);font:500 .72rem "IBM Plex Mono",monospace;cursor:pointer}
+.rail button span{opacity:0;transform:translateX(8px);transition:all .3s var(--ez);text-transform:uppercase;letter-spacing:.04em}
+.rail button:hover span,.rail button.on span{opacity:1;transform:none}
+.rail button::after{content:"";width:1.4rem;height:2px;background:var(--ink);opacity:.35;transition:all .3s var(--ez)}
+.rail button.on{color:var(--ink)}.rail button.on::after{width:2.4rem;background:var(--or);opacity:1;height:4px}
+.rail .arr{font-size:1rem;min-height:40px;color:var(--ink)}.rail .arr::after{display:none}
+.block{position:fixed;right:1rem;bottom:1rem;z-index:4;border:1.5px solid var(--ink);background:var(--sheet);font:500 .68rem/1.5 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.04em;display:grid;grid-template-columns:auto auto}
+.block div{padding:.35rem .7rem;border:0 solid var(--ink)}.block div:nth-child(odd){border-right-width:1.5px}.block div:nth-child(-n+2){border-bottom-width:1.5px}
+@media (max-width:800px){
+#tav{left:0;right:0;top:auto;bottom:0;width:auto;max-height:54vh;border-width:1.5px 0 0;box-shadow:0 -6px 0 var(--ink)}
+.rail{right:.2rem;top:4.2rem;transform:none}.rail button span{display:none}.rail .arr{display:none}
+.block{display:none}.tag{font-size:.65rem;padding:.3rem .45rem}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.sheet>*{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="num" id="num" aria-hidden="true">00</div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<a class="logo" href="#inizio" aria-label="Calce e Cantiere, torna all’inizio">Calce <i>&amp;</i> Cantiere</a>
+<nav class="rail" id="rail" aria-label="Stanze della casa"></nav>
+<div class="block" aria-hidden="true"><div>Calce &amp; Cantiere</div><div id="tn">Tav. 00/06</div><div>Scala 1:50</div><div>Concept MANDAVEL, dati fittizi</div></div>
+
+<main id="tav" aria-live="polite">
+<article class="sheet" data-id="inizio" data-n="Inizio" aria-label="Inizio">
+<div class="hd"><span>Tav. 00 / Inizio</span><span>Concept</span></div>
+<h1>Ristrutturare casa senza partire alla cieca.</h1>
+<p class="lead">Questa casa è il sito. Entra in una stanza per vedere come funziona una richiesta di preventivo: bagno, cucina o appartamento intero.</p>
+<div class="row"><button class="btn" data-go="6">Richiedi un preventivo</button><button class="btn ghost" data-go="1">Entra nella casa</button></div>
+<p class="note">Clicca le etichette nella pianta o usa le frecce della tastiera. Progetto concept dimostrativo di MANDAVEL: impresa e dati sono fittizi.</p>
+</article>
+
+<article class="sheet" data-id="soggiorno" data-n="Soggiorno" aria-label="Soggiorno" hidden>
+<div class="hd"><span>Tav. 01 / Soggiorno</span><span>I dubbi</span></div>
+<h2>Tre dubbi, prima di cominciare</h2>
+<ol class="big">
+<li><h3>Cosa devo dire all’impresa?</h3><p>Il modulo ti guida: intervento, ambienti, stato attuale e tempi. Niente termini tecnici.</p></li>
+<li><h3>Cosa sarà incluso nel preventivo?</h3><p>La valutazione separa demolizioni, impianti, posa e finiture: confronti lavorazioni, non un totale unico.</p></li>
+<li><h3>Cosa succede dopo l’invio?</h3><p>Quattro passaggi, con chi fa cosa. Li trovi nell’Ingresso.</p></li>
+</ol>
+</article>
+
+<article class="sheet" data-id="bagno" data-n="Bagno" aria-label="Bagno" hidden>
+<div class="hd"><span>Tav. 02 / Bagno</span><span>Intervento</span></div>
+<h2>Il bagno</h2>
+<p class="lead">Dal rifacimento parziale a quello completo.</p>
+<dl class="spec"><dt>Tipici</dt><dd>Sanitari, rivestimenti, impianto idraulico, doccia al posto della vasca.</dd><dt>Da sapere</dt><dd>Misure, posizione degli scarichi, presenza di finestra.</dd><dt>Si valuta</dt><dd>Demolizioni, impianti, posa, finiture, smaltimento.</dd></dl>
+<div class="row"><button class="btn" data-go="6">Chiedi una valutazione</button></div>
+</article>
+
+<article class="sheet" data-id="cucina" data-n="Cucina" aria-label="Cucina" hidden>
+<div class="hd"><span>Tav. 03 / Cucina</span><span>Intervento</span></div>
+<h2>La cucina, e l’appartamento intero</h2>
+<dl class="spec"><dt>Cucina</dt><dd>Nuova disposizione, punti acqua e gas, impianto elettrico, piano di lavoro. Servono ingombri e linee impianto.</dd><dt>Casa intera</dt><dd>Più ambienti con lavori in sequenza, perché un intervento non disfi il precedente. Servono metratura e cosa vuoi mantenere.</dd><dt>Si valuta</dt><dd>Ogni ambiente separato, poi il coordinamento.</dd></dl>
+<div class="row"><button class="btn" data-go="6">Chiedi una valutazione</button></div>
+</article>
+
+<article class="sheet" data-id="ingresso" data-n="Ingresso" aria-label="Ingresso" hidden>
+<div class="hd"><span>Tav. 04 / Ingresso</span><span>Come funziona</span></div>
+<h2>Dalla richiesta al preventivo</h2>
+<ol class="tl">
+<li><h3>Descrivi</h3><p>Compili il modulo con intervento, ambienti e tempi.</p></li>
+<li><h3>Raccogliamo</h3><p>Rileggiamo la richiesta e segnaliamo cosa manca.</p></li>
+<li><h3>Valutiamo</h3><p>Una valutazione con le voci separate.</p></li>
+<li><h3>Definiamo</h3><p>Ne parliamo e, se serve, fissiamo un sopralluogo.</p></li>
+</ol>
+<p class="note">Modello dimostrativo. Guarda la casa: i muri si rialzano uno alla volta, come in cantiere.</p>
+</article>
+
+<article class="sheet" data-id="camera" data-n="Camera" aria-label="Camera" hidden>
+<div class="hd"><span>Tav. 05 / Camera</span><span>Domande</span></div>
+<h2>Prima di scrivere</h2>
+<div style="margin-top:1.2rem">
+<details><summary>Quali informazioni devo preparare?</summary><p>Tipo di intervento, ambienti e come sono oggi. Misure e foto aiutano ma non sono obbligatorie.</p></details>
+<details><summary>Devo conoscere già il budget?</summary><p>No. Se hai una cifra scrivila nella descrizione, altrimenti la valutazione parte da lavorazioni e materiali.</p></details>
+<details><summary>Richiesta e preventivo sono la stessa cosa?</summary><p>No. La richiesta sono le informazioni che invii. Il preventivo arriva dopo la valutazione e può richiedere un sopralluogo.</p></details>
+<details><summary>Questa impresa esiste davvero?</summary><p>No. È un caso creato da MANDAVEL per mostrare come si progetta una landing page. Contatti, prezzi e dati sono fittizi.</p></details>
+</div>
+</article>
+
+<article class="sheet" data-id="studio" data-n="Studio" aria-label="Studio" hidden>
+<div class="hd"><span>Tav. 06 / Studio</span><span>Preventivo</span></div>
+<h2>Richiedi un preventivo</h2>
+<p class="alert" role="note"><b>Simulazione.</b> Il modulo valida i dati ma non li trasmette né li registra. Campi con * obbligatori.</p>
+<form id="f" novalidate>
+<div class="f"><label for="nome">Nome e cognome *</label><input id="nome" autocomplete="name" aria-describedby="e-nome"><p class="err" id="e-nome"></p></div>
+<div class="f"><label for="email">Email *</label><input id="email" type="email" autocomplete="email" aria-describedby="e-email"><p class="err" id="e-email"></p></div>
+<div class="f"><label for="tel">Telefono (facoltativo)</label><input id="tel" type="tel" autocomplete="tel" aria-describedby="e-tel"><p class="err" id="e-tel"></p></div>
+<div class="f"><label for="tipo">Tipo di intervento *</label><select id="tipo" aria-describedby="e-tipo"><option value="">Scegli…</option><option>Bagno</option><option>Cucina</option><option>Appartamento intero</option><option>Altro ambiente</option></select><p class="err" id="e-tipo"></p></div>
+<div class="f"><label for="desc">Descrivi il progetto *</label><textarea id="desc" aria-describedby="h-desc e-desc"></textarea><span class="hint" id="h-desc">Ambienti, stato attuale, cosa cambiare, tempi. Almeno 20 caratteri.</span><p class="err" id="e-desc"></p></div>
+<div class="f"><div class="chk"><input id="priv" type="checkbox" aria-describedby="e-priv"><label for="priv">Ho letto l’informativa privacy (segnaposto: in un sito reale qui ci sarebbe il testo legale).</label></div><p class="err" id="e-priv"></p></div>
+<div class="row"><button class="btn" type="submit" id="go">Invia (simulazione)</button></div>
+<p class="err" id="e-form" role="alert"></p>
+</form>
+<div class="result" id="ok" hidden tabindex="-1" role="status"><h3>Simulazione completata</h3><p>I dati sono validi, ma <b>nessuna richiesta è stata inviata o salvata</b>: la pagina è un prototipo senza servizio collegato.</p><button class="btn ghost" type="button" id="again">Compila di nuovo</button></div>
+<ul class="tri"><li><b>In questa demo:</b> nulla viene inviato o salvato.</li><li><b>In un sito reale:</b> solo i dati utili a valutare il lavoro, con informativa e destinazione verificata.</li><li><b>Non troverai</b> recensioni, stelle o loghi di clienti: l’impresa è di fantasia.</li></ul>
+<p class="note" style="margin-top:1rem">Calce &amp; Cantiere è un’impresa di fantasia: indirizzo, telefono, email e partita IVA non esistono. Note legali: segnaposto da sostituire prima di un uso reale.</p>
+</article>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var R=matchMedia("(prefers-reduced-motion:reduce)").matches,$=function(s){return document.querySelector(s)},
+SH=[].slice.call(document.querySelectorAll(".sheet")),N=SH.length,S=0,tk=0,rail=$("#rail"),tav=$("#tav"),tags=[];
+/* viste: x, z, mezza altezza, altezza muri */
+var V=[[0,-.5,74,3,.78,.62],[-8,-4,40,1.1,.35,.8],[-12,7.7,27,1.1,1.15,.78],[-13,-9.5,27,1.1,.2,.8],[0,-.5,62,3,.95,.6],[10,-5,38,1.1,1.25,.75],[12,7.7,31,1.1,.55,.78]],
+RM=[null,[-8,-2,19.6,9.6],[-12,7.7,11.2,8.2],[-13.1,-9.8,9,5.6],[0,7.7,11.2,8.2],[10,-5,15.2,15.2],[12,7.7,11.2,8.2]],
+cur={x:0,z:-.5,h:135,w:3,a:-.5,e:1.2},tg={x:0,z:-.5,h:74,w:3,a:.78,e:.62},hl=[0,0,0,0,0,0,0],bs=-1,mx=0,my=0;
+
+/* navigazione: binario, tag nella pianta, tastiera, hash */
+function mk(tag,cls,txt,fn){var b=document.createElement(tag);b.type="button";b.className=cls;b.innerHTML=txt;b.onclick=fn;return b}
+var up=mk("button","arr","↑",function(){go(S-1,1)});up.setAttribute("aria-label","Stanza precedente");rail.appendChild(up);
+SH.forEach(function(s,i){var b=mk("button","","<span>"+s.dataset.n+"</span>0"+i,function(){go(i,1)});b.setAttribute("aria-label",s.dataset.n);rail.appendChild(b);
+if(i){var t=mk("button","tag","0"+i+" "+s.dataset.n,function(){go(i,1)});t.setAttribute("aria-label","Vai a "+s.dataset.n);document.body.appendChild(t);tags[i]=t}});
+var dn=mk("button","arr","↓",function(){go(S+1,1)});dn.setAttribute("aria-label","Stanza successiva");rail.appendChild(dn);
+document.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){go(+b.dataset.go,1)}});
+document.addEventListener("keydown",function(e){if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+if(e.key==="ArrowRight"||e.key==="ArrowDown"){e.preventDefault();go(S+1,1)}if(e.key==="ArrowLeft"||e.key==="ArrowUp"){e.preventDefault();go(S-1,1)}});
+function go(n,user,first){n=Math.max(0,Math.min(N-1,n));if(n===S&&!first)return;S=n;var my=++tk,id=SH[n].dataset.id;
+if(!first)history.replaceState(null,"","#"+id);
+[].forEach.call(rail.querySelectorAll("button:not(.arr)"),function(b,i){b.classList.toggle("on",i===n);b.toggleAttribute("aria-current",i===n)});
+tags.forEach(function(t,i){t.classList.toggle("on",i===n)});$("#tn").textContent="Tav. 0"+n+"/06";$("#num").textContent="0"+n;
+var v=V[n];tg.x=v[0];tg.z=v[1];tg.h=v[2];tg.w=v[3];tg.a=v[4];tg.e=v[5];if(!first)bs=n===4?-1:0;if(R){cur.x=tg.x;cur.z=tg.z;cur.h=tg.h;cur.w=tg.w;cur.a=tg.a;cur.e=tg.e}
+SH.forEach(function(s){s.classList.remove("show")});
+setTimeout(function(){if(my!==tk)return;SH.forEach(function(s,i){s.hidden=i!==n});var s=SH[n];[].forEach.call(s.children,function(c,i){c.style.setProperty("--i",i)});tav.scrollTop=0;void s.offsetWidth;s.classList.add("show");
+if(user){var h=s.querySelector("h1,h2");h.tabIndex=-1;h.focus({preventScroll:true})}},first||R?0:210);
+if(window.setRoom)setRoom(n)}
+go((function(){var i=SH.map(function(s){return s.dataset.id}).indexOf(location.hash.slice(1));return i<0?0:i})(),0,1);
+
+/* scena 3D: casa come modello da studio, camera ortogonale, taglio delle stanze */
+var T=window.THREE,cv=$("#gl");
+if(T){try{
+var ren=new T.WebGLRenderer({canvas:cv,antialias:true,alpha:true});ren.setClearColor(0,0);ren.setPixelRatio(Math.min(devicePixelRatio||1,2));ren.shadowMap.enabled=true;
+var sn=new T.Scene(),cam=new T.PerspectiveCamera(30,1,1,400),INK=0x12233f,OR=new T.Color(0xff5a1f);
+sn.add(new T.AmbientLight(0xffffff,.8));var d=new T.DirectionalLight(0xffffff,.6);d.position.set(-14,30,18);d.castShadow=true;
+["left","bottom"].forEach(function(k){d.shadow.camera[k]=-34});["right","top"].forEach(function(k){d.shadow.camera[k]=34});d.shadow.mapSize.set(1024,1024);sn.add(d);
+var ln=new T.LineBasicMaterial({color:INK});
+function bx(w,h,dd,c,x,y,z){var g=new T.BoxGeometry(w,h,dd);g.translate(0,h/2,0);var m=new T.Mesh(g,new T.MeshLambertMaterial({color:c}));m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;m.add(new T.LineSegments(new T.EdgesGeometry(g),ln));sn.add(m);return m}
+bx(37,.5,26,0xd9d4c5,0,-.5,-.5);
+var fl=[];RM.forEach(function(r,i){if(r){var m=bx(r[2],.08,r[3],0xe6e1d3,r[0],0,r[1]);m.castShadow=false;m.material.userData={b:new T.Color(0xe6e1d3)};fl[i]=m}});
+var X=function(x){return(x-200)/10},Z=function(y){return(y-150)/10},ws=[];
+[[20,20,380,20],[20,270,380,270],[20,20,20,270],[380,20,380,270],[220,20,220,180],[20,180,380,180],[140,180,140,270],[260,180,260,270]].forEach(function(w){
+var L=Math.abs(w[2]-w[0])/10,D=Math.abs(w[3]-w[1])/10;ws.push(bx(L?L+.5:.5,3,D?D+.5:.5,0xfbf9f2,X((w[0]+w[2])/2),0,Z((w[1]+w[3])/2)))});
+var fu=[];[[1,[-4,-1,6,2.4,1.1]],[1,[-8,-5,2.4,2.4,.5]],[2,[-15,10,6,2.6,1.2]],[3,[-15,-11,7,1.8,1.4]],[3,[-10,-7,3,1.4,1.1]],[4,[0,10,5,1.4,1]],[5,[12,-6,5,6,.9]],[6,[14,9,5,2,1]]].forEach(function(f){var q=f[1],m=bx(q[2],q[4],q[3],0xe9e4d6,q[0],0,q[1]);m.userData.r=f[0];fu.push(m)});
+window.setRoom=function(n){fu.forEach(function(m){m.material.color.set(m.userData.r===n?0xff5a1f:0xe9e4d6)})};setRoom(S);
+addEventListener("pointermove",function(e){px=e.clientX/innerWidth-.5;py=e.clientY/innerHeight-.5});function res(){ren.setSize(innerWidth,innerHeight,false)}res();addEventListener("resize",res);
+var nm=$("#num"),px=0,py=0,last=0,v3=new T.Vector3(),cc=new T.Color(),E=function(u){u=Math.max(0,Math.min(1,u));return u*u*(3-2*u)};
+function frame(t){requestAnimationFrame(frame);var dt=Math.min((t-last)/1000,.05);last=t;var k=R?1:1-Math.exp(-dt*4);
+["x","z","h","w","a","e"].forEach(function(q){cur[q]+=(tg[q]-cur[q])*k});mx+=(px-mx)*.05;my+=(py-my)*.05;
+var W=innerWidth,H=innerHeight,a=W/H,mob=W<=800,d=Math.max(cur.h,cur.h*1.7/a),az=cur.a+(R?0:mx*.14+Math.sin(t/7000)*.03),el=Math.max(.35,cur.e-(R?0:my*.07));
+cam.aspect=a;cam.setViewOffset(W,H,mob?0:-W*.21,mob?H*.24:0,W,H);
+cam.position.set(cur.x+d*Math.cos(el)*Math.sin(az),d*Math.sin(el),cur.z+d*Math.cos(el)*Math.cos(az));cam.lookAt(cur.x,0,cur.z);cam.updateMatrixWorld();
+if(!R&&!mob){tav.style.transform="perspective(1400px) rotateY("+(mx*2.2)+"deg) rotateX("+(-my*1.6)+"deg)";nm.style.transform="translate("+(-mx*46)+"px,"+(-my*26)+"px)"}
+if(bs===-1&&!R)bs=t;
+ws.forEach(function(m,i){var s=cur.w/3;if(bs>0&&!R){s=E((t-bs)/1000/.8-i*.3);if(t-bs>3500)bs=0}m.scale.y=Math.max(.001,s)});
+fu.forEach(function(m){var on=m.userData.r===S;m.scale.y+=((on||S===0||S===4?1:.45)-m.scale.y)*k});
+fl.forEach(function(m,i){hl[i]+=((i===S?1:0)-hl[i])*k;cc.copy(m.material.userData.b).lerp(OR,hl[i]*.9);m.material.color.copy(cc)});
+tags.forEach(function(el,i){var r=RM[i];v3.set(r[0],i===1?.5:2,r[1]===0?0:r[1]+(i===1?2.2:0)).project(cam);el.style.transform="translate("+((v3.x*.5+.5)*innerWidth)+"px,"+((-v3.y*.5+.5)*innerHeight)+"px) translate(-50%,-50%)"});
+ren.render(sn,cam)}
+frame(0);
+}catch(e){console.warn("Scena 3D non disponibile",e);tags.forEach(function(t){if(t)t.hidden=true})}}
+else tags.forEach(function(t){if(t)t.hidden=true});
+
+/* modulo con validazione (simulazione dichiarata) */
+var f=$("#f"),ok=$("#ok"),gb=$("#go"),busy=false;
+var rules=[["nome",function(v){return v.trim().length>=3?"":"Inserisci nome e cognome."}],
+["email",function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?"":"Inserisci un’email valida, per esempio nome@dominio.it."}],
+["tel",function(v){return v.trim()===""||/^[+()\d\s.-]{6,20}$/.test(v.trim())?"":"Usa solo cifre, spazi e il segno +."}],
+["tipo",function(v){return v?"":"Scegli il tipo di intervento."}],
+["desc",function(v){return v.trim().length>=20?"":"Scrivi almeno 20 caratteri: ambienti e cosa vuoi cambiare."}]];
+function setErr(id,m){$("#"+id).setAttribute("aria-invalid",m?"true":"false");$("#e-"+id).textContent=m}
+function validate(){var first=null;rules.forEach(function(r){var el=$("#"+r[0]),m=r[1](el.value);setErr(r[0],m);if(m&&!first)first=el});
+var p=$("#priv"),pm=p.checked?"":"Conferma di aver letto l’informativa per procedere.";setErr("priv",pm);if(pm&&!first)first=p;return first}
+f.addEventListener("input",function(e){var r=rules.filter(function(x){return x[0]===e.target.id})[0];if(r&&e.target.getAttribute("aria-invalid")==="true")setErr(r[0],r[1](e.target.value))});
+f.addEventListener("submit",function(e){e.preventDefault();if(busy)return;var bad=validate(),ef=$("#e-form");
+if(bad){ef.textContent="Controlla i campi segnalati e riprova.";bad.focus();return}
+ef.textContent="";busy=true;gb.disabled=true;gb.textContent="Controllo in corso…";
+setTimeout(function(){busy=false;gb.disabled=false;gb.textContent="Invia (simulazione)";f.hidden=true;ok.hidden=false;ok.focus()},900)});
+$("#again").onclick=function(){f.reset();rules.forEach(function(r){setErr(r[0],"")});setErr("priv","");ok.hidden=true;f.hidden=false;$("#nome").focus()};
+})();
+</script>
+</body>
+</html>
