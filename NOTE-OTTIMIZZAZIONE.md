@@ -12,3 +12,9 @@
 - Pavimento su canvas (vedi sopra); `:hover` sticky dei tocchi disattivato; blur dei pannelli disattivato sui touch (sfondo già al 92%); shimmer del pulsante in pausa sui pannelli non attivi.
 - Pacchetti: il cambio colore non anima più una custom property (ridipingeva lo schermo a ogni frame) ma due livelli in dissolvenza (solo opacity).
 - Anteprime dal vivo (`progetti/*.html?pv=1`): pixel ratio 1, animazioni/rAF in pausa durante i movimenti di camera, 30 fps su touch. Le pagine aperte normalmente non cambiano.
+
+## Descrizioni dei servizi nei pacchetti
+- Ogni scheda ha ora una breve descrizione sotto il titolo (campo `d:` di ciascun pacchetto nell'array `K` di `pacchetti.html`), nel colore «muted» della sala, senza elenchi né box aggiuntivi.
+- Il pannello «Come conviene» ha una sezione «Cosa include»: un servizio per riga (numero in mono + nome + una frase), testi nel dizionario `SD`.
+- I testi si basano sui nomi dei servizi e sui concept; non contengono numeri, tempi o garanzie inventati. Vanno riletti e, se serve, adattati ai servizi reali.
+- Su desktop il contenuto di ogni sala si adatta con una scala individuale (`--ks`) solo quando serve; sulla sala 05 il limite tiene conto dello schema del sito. Su mobile `--am` riserva lo spazio minimo all'illustrazione.
