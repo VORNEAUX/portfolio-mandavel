@@ -27,3 +27,4 @@
 ## Correzioni finali
 - Il trattino «–» di «3–5 giorni» (e il «−» dello sconto nella sala 05) non veniva disegnato dal font corsivo Bodoni: ora è renderizzato con il font sans (`.dsh`).
 - Pacchetto «Negozio Aperto»: collegamento al concept dimostrativo e-commerce già nel Portfolio (04 · Officina del Chicco, `index.html#prova-04`), nell’elenco dei concept del pannello, come per gli altri pacchetti.
+- Il simbolo € del «Prezzo finale» nel pannello «Come conviene» (Bodoni corsivo, ~30px) perdeva le barrette sottili e sembrava una «C»: ora il simbolo usa il font sans (`.dsh.eu`), le cifre restano in Bodoni.
