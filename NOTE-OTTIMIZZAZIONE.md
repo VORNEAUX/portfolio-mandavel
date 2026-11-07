@@ -25,6 +25,6 @@
 - L'anello è ora generico a N sale (`N=K.length`): per aggiungerne altre basta un elemento in `K`, uno in `ART`, un colore in `C` e il CSS della sala.
 
 ## Correzioni finali
-- Il trattino «–» di «3–5 giorni» (e il «−» dello sconto nella sala 05) non veniva disegnato dal font corsivo Bodoni: ora è renderizzato con il font sans (`.dsh`).
+- Trattino «–» di «3–5 giorni», segno «−» dello sconto, «€» e cifra «4» (Bodoni corsivo) perdevano le linee sottili e sembravano «3 5», «C2890», «1 49»: causa il ridimensionamento ottico automatico (asse `opsz`) del font. Ora i glifi restano Bodoni corsivo, stessa dimensione, con `opsz` fissato (11; 6 per le scritte piccole come «Risparmi €…»).
 - Pacchetto «Negozio Aperto»: collegamento al concept dimostrativo e-commerce già nel Portfolio (04 · Officina del Chicco, `index.html#prova-04`), nell’elenco dei concept del pannello, come per gli altri pacchetti.
-- Il simbolo € del «Prezzo finale» nel pannello «Come conviene» (Bodoni corsivo, ~30px) perdeva le barrette sottili e sembrava una «C»: ora il simbolo usa il font sans (`.dsh.eu`), le cifre restano in Bodoni.
+- Il «−» dello sconto resta sulla stessa riga della percentuale nel cerchio della sala 01 (desktop e mobile).
