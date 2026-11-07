@@ -22,7 +22,7 @@ Il portfolio è un percorso 3D (CSS 3D + canvas, nessuna libreria): si naviga co
 I concept in `progetti/` sono invariati, tranne una regola CSS aggiunta in coda a `03-tassello.html` (controlli di rotazione del modello): evita un artefatto grafico di composizione (un quadrato) riscontrato nel visualizzatore.
 
 ## Pagina Pacchetti
-`pacchetti.html` presenta i sei pacchetti come una piccola esposizione (una «sala» per pacchetto). Per collegare le richieste a un recapito reale imposta `CONTATTO.email` e/o `CONTATTO.url` in cima allo script di `pacchetti.html`: finché sono vuoti, il modulo di richiesta permette di copiare il riepilogo negli appunti (nessun link morto, nessun invio simulato).
+`pacchetti.html` presenta i sette pacchetti come una piccola esposizione (una «sala» per pacchetto). Per collegare le richieste a un recapito reale imposta `CONTATTO.email` e/o `CONTATTO.url` in cima allo script di `pacchetti.html`: finché sono vuoti, il modulo di richiesta permette di copiare il riepilogo negli appunti (nessun link morto, nessun invio simulato).
 
 ## Indirizzo ufficiale ed email
 - Indirizzo del portfolio: **https://gallery.mandavel.it** (file `CNAME` incluso). GitHub Pages → Settings → Pages → Custom domain: `gallery.mandavel.it`, poi «Enforce HTTPS». Nel DNS di `mandavel.it` crea un record **CNAME**: nome `gallery`, valore `vorneaux.github.io`.
