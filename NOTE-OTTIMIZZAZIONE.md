@@ -23,3 +23,7 @@
 - **Tempi di consegna**: riga discreta «Consegna indicativa · 3–5 giorni» sotto i pulsanti di ogni scheda; nel pannello «Come conviene» il blocco «Tempi di consegna» (stima orientativa, non garantita; anche prima, anche oltre i 5 giorni; dipende da richieste/progetti e complessità); una riga anche nel modulo di richiesta. Testi in `pl()`, `sheet()` e `#dtm` in `pacchetti.html`.
 - **Negozio Aperto (07)**: E-commerce + Landing page + Profilo Google + Presentazione. Valore €4119, prezzo €2890, −30%, risparmio €1229. Prezzi di riferimento dei servizi ricavati dai pacchetti esistenti: Profilo Google €249, Landing page €890, Presentazione €490 (Sito 5 pagine €1490, Registro preventivi €490); **E-commerce €2490 è una stima da confermare** (in `K[6]`: se cambia il listino, aggiorna `val`, `pr`, `sc`, `ris`).
 - L'anello è ora generico a N sale (`N=K.length`): per aggiungerne altre basta un elemento in `K`, uno in `ART`, un colore in `C` e il CSS della sala.
+
+## Correzioni finali
+- Il trattino «–» di «3–5 giorni» (e il «−» dello sconto nella sala 05) non veniva disegnato dal font corsivo Bodoni: ora è renderizzato con il font sans (`.dsh`).
+- Pacchetto «Negozio Aperto»: collegamento al concept dimostrativo e-commerce già nel Portfolio (04 · Officina del Chicco, `index.html#prova-04`), sia accanto al servizio «E-commerce» in «Cosa include» sia nell'elenco dei concept del pannello, come per gli altri pacchetti.
