@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!-- MANDAVEL P2, ELDOVANT Official Website (caso studio). File unico, senza build.
+Dipendenze: Google Fonts (Bodoni Moda, DM Mono, Schibsted Grotesk) con fallback di sistema; immagini in ../assets/eldovant/.
+Contenuto: scheda del sito ufficiale https://www.eldovant.com, realizzato da MANDAVEL per ELDOVANT. Le immagini sono schermate del sito
+(versione desktop 1440x900 e mobile 390x844); non è un'incorporazione dal vivo. Palette, caratteri e funzioni descritti provengono dal codice del sito. -->
+<html lang="it">
+<head>
+<script>/* anteprima nel portfolio (?pv=1): pixel ratio 1, animazioni in pausa durante gli spostamenti di camera */
+(function(){if(!/[?&]pv=1/.test(location.search))return;try{Object.defineProperty(window,"devicePixelRatio",{get:function(){return 1},configurable:true})}catch(e){}
+var st=null,h=false;
+Object.defineProperty(window,"__pvHold",{configurable:true,get:function(){return h},set:function(v){v=!!v;if(v===h)return;h=v;if(!st){st=document.createElement("style");st.textContent="*,*:before,*:after{animation-play-state:paused!important}"}
+ if(h)(document.head||document.documentElement).appendChild(st);else if(st.parentNode)st.parentNode.removeChild(st)}})})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ELDOVANT Official Website, sito realizzato da MANDAVEL per ELDOVANT</title>
+<meta name="description" content="Il sito ufficiale di ELDOVANT (Original Motion Pictures & Music), progettato e realizzato da MANDAVEL: sito bilingue EN/IT con apertura cinematografica, tema chiaro e scuro e pagine dedicate ai titoli.">
+<meta property="og:title" content="ELDOVANT Official Website, realizzato da MANDAVEL">
+<meta property="og:description" content="Progetto MANDAVEL per ELDOVANT: il sito ufficiale della casa indipendente di film e musica originali.">
+<link rel="icon" href="../favicon.ico?v=2" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=DM+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#06080d;--bg2:#0e1424;--fg:#ece8dc;--soft:#c9c6bb;--mut:#8b93a7;--line:rgba(236,232,220,.16);--acc:#5b84ff;--gold:#c9a45c;--serif:"Bodoni Moda",Georgia,serif;--sans:"Schibsted Grotesk",system-ui,sans-serif;--mono:"DM Mono",ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 520px at 85% -5%,rgba(201,164,92,.16),transparent 70%),radial-gradient(800px 600px at -10% 40%,rgba(91,132,255,.12),transparent 70%)}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+.mono{font:500 11px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.wrap{width:min(1180px,100% - 48px);margin:0 auto}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:99px;border:1px solid var(--line);font:500 13px var(--sans);text-decoration:none;color:var(--fg);background:transparent;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
+.btn:hover,.btn:focus-visible{border-color:var(--fg);background:rgba(236,232,220,.07)}
+.btn.pri{background:var(--gold);border-color:var(--gold);color:#14120e;font-weight:600}
+.btn.pri:hover,.btn.pri:focus-visible{background:#ddbb78;border-color:#ddbb78}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+/* testata */
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+header.top img{height:40px;width:auto}
+header.top .mono{text-align:right}
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(8px,3vh,40px) 0 clamp(40px,8vh,90px)}
+.hero h1{font:500 clamp(40px,5.4vw,76px)/.98 var(--serif);letter-spacing:-.02em;margin:14px 0 18px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.lead{color:var(--soft);font-size:clamp(15px,1.5vw,18px);max-width:46ch}
+.credit{display:grid;grid-template-columns:1fr 1fr;margin:26px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(14,20,36,.55)}
+.credit div{padding:14px 16px}.credit div+div{border-left:1px solid var(--line)}
+.credit b{display:block;font:500 clamp(16px,1.6vw,20px)/1.2 var(--serif);margin-top:4px}
+.credit .m b{color:var(--acc)}.credit .e b{color:var(--gold)}
+.credit small{display:block;color:var(--mut);font-size:12.5px;margin-top:3px}
+.act{display:flex;gap:10px;flex-wrap:wrap}
+.stage{position:relative;padding-bottom:7%}
+.bro{border-radius:10px;overflow:hidden;background:#111;box-shadow:0 0 0 1px var(--line),0 50px 100px -30px rgba(201,164,92,.35),0 30px 60px -20px #000}
+.bro .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#17140f;border-bottom:1px solid rgba(255,255,255,.08)}
+.bro .bar i{width:9px;height:9px;border-radius:50%;background:rgba(236,229,211,.22)}
+.bro .bar span{flex:1;margin-left:10px;padding:3px 12px;border-radius:99px;background:rgba(236,229,211,.08);font:400 11px var(--mono);color:#b9ae99;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bro img{width:100%;aspect-ratio:1440/900;object-fit:cover}
+.pho{position:absolute;right:-1%;bottom:0;width:23%;border-radius:18px;overflow:hidden;border:5px solid #17140f;box-shadow:0 0 0 1px var(--line),0 30px 60px -10px #000}
+.pho img{width:100%;aspect-ratio:585/1266;object-fit:cover}
+/* sezioni */
+section{padding:clamp(40px,8vh,84px) 0;border-top:1px solid var(--line)}
+.sh{max-width:62ch;margin-bottom:clamp(24px,4vh,40px)}
+.sh h2{font:500 clamp(28px,3.4vw,46px)/1.05 var(--serif);letter-spacing:-.015em;margin:10px 0 12px}
+.sh p{color:var(--soft)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px)}
+.fact{padding:16px 0;border-top:1px solid var(--line)}
+.fact:last-child{border-bottom:1px solid var(--line)}
+.fact b{display:block;font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.fact span{color:var(--soft);font-size:15px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{padding:20px;border:1px solid var(--line);border-radius:14px;background:rgba(14,20,36,.5)}
+.card .mono{color:var(--acc)}
+.card h3{font:500 21px/1.15 var(--serif);margin:8px 0 8px}
+.card p{color:var(--soft);font-size:14.5px;line-height:1.55}
+/* anteprime */
+.tabs{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:99px;margin-bottom:22px}
+.tabs button{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border:0;border-radius:99px;background:transparent;color:var(--mut);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--fg);color:var(--bg)}
+.pan[hidden]{display:none}
+.gal-d{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.gal-m{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+figure .bro img{aspect-ratio:1440/900}
+.gal-d>figure,.gal-m>figure{min-width:0}.gal-d .last{grid-column:1/-1;max-width:calc(50% - 10px)}
+figure figcaption{margin-top:10px;font-size:13.5px;color:var(--mut)}
+figure figcaption b{color:var(--fg);font-weight:500;display:block}
+.phone{border-radius:22px;overflow:hidden;border:5px solid #17140f;box-shadow:0 0 0 1px var(--line),0 26px 50px -16px #000;background:#17140f}
+.phone img{width:100%;aspect-ratio:585/1266;object-fit:cover}
+/* sistema visivo */
+.sw{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:28px}
+.sw div{border:1px solid var(--line);border-radius:10px;overflow:hidden;font:400 11px var(--mono);color:var(--mut)}
+.sw i{display:block;height:64px}.sw span{display:block;padding:8px 10px;line-height:1.35}.sw b{display:block;color:var(--fg);font-weight:500}
+.ty{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ty>div{padding:18px;border:1px solid var(--line);border-radius:12px}
+.ty .a{font:300 34px/1.1 "Cormorant Garamond",Georgia,serif}
+.ty .b{font:400 20px/1.3 "Instrument Sans","Helvetica Neue",Arial,sans-serif}
+.ty .c{font:400 14px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.ty small{display:block;margin-top:10px;color:var(--mut);font-size:12.5px;font-family:var(--sans);letter-spacing:0;text-transform:none}
+/* scheda tecnica */
+dl.spec{display:grid;grid-template-columns:200px 1fr;border-top:1px solid var(--line)}
+dl.spec dt,dl.spec dd{padding:14px 0;border-bottom:1px solid var(--line)}
+dl.spec dt{font:500 11px/1.8 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+dl.spec dd{color:var(--soft);font-size:15px}
+.cta{text-align:center}
+.cta h2{font:500 clamp(30px,4vw,54px)/1.05 var(--serif);margin:12px auto 14px;max-width:18ch}
+.cta p{color:var(--soft);max-width:54ch;margin:0 auto 24px}
+.cta .act{justify-content:center}
+footer{padding:28px 0 40px;border-top:1px solid var(--line);color:var(--mut);font-size:13px}
+@media(max-width:900px){
+ .gal-d .last{max-width:none}
+ .hero,.two{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.gal-d{grid-template-columns:1fr}.gal-m{grid-template-columns:1fr 1fr}
+ .sw{grid-template-columns:repeat(3,1fr)}.ty{grid-template-columns:1fr}.stage{max-width:620px;margin:0 auto;width:100%}
+ dl.spec{grid-template-columns:1fr}dl.spec dt{border-bottom:0;padding-bottom:0}dl.spec dd{padding-top:4px}
+}
+@media(max-width:560px){.wrap{width:min(1180px,100% - 32px)}.grid3{grid-template-columns:1fr}.credit{grid-template-columns:1fr}.credit div+div{border-left:0;border-top:1px solid var(--line)}header.top .mono{display:none}.pho{width:28%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><img src="../assets/logo-mandavel-sfondo-scuro.png" alt="MANDAVEL"><span class="mono">P2 · Sito web · Progetto reale</span></header>
+
+<main id="main">
+<div class="hero" id="inizio">
+ <div>
+  <span class="mono">Siti e landing · Sito web ufficiale</span>
+  <h1>ELDOVANT <em>Official Website</em></h1>
+  <p class="lead">Il sito ufficiale di ELDOVANT, casa indipendente di film, cortometraggi, serie e musica originali: progettato e realizzato da MANDAVEL, bilingue e costruito come un’apertura cinematografica.</p>
+  <div class="credit" role="group" aria-label="Crediti del progetto">
+   <div class="m"><span class="mono">Progetto e realizzazione</span><b>MANDAVEL</b><small>Design, sviluppo e pubblicazione del sito</small></div>
+   <div class="e"><span class="mono">Realizzato per</span><b>ELDOVANT</b><small>Original Motion Pictures &amp; Music</small></div>
+  </div>
+  <div class="act"><a class="btn pri" href="https://www.eldovant.com" target="_blank" rel="noopener">Visita eldovant.com ↗</a><a class="btn" href="#anteprime">Guarda le anteprime</a></div>
+ </div>
+ <div class="stage" aria-hidden="false">
+  <div class="bro"><div class="bar"><i></i><i></i><i></i><span>www.eldovant.com</span></div><img src="../assets/eldovant/d-opening-dark.jpg" width="1440" height="900" alt="Apertura del sito ELDOVANT in versione scura: il marchio con la luna e la scritta Original Motion Pictures &amp; Music"></div>
+  <div class="pho"><img src="../assets/eldovant/m-opening.jpg" width="585" height="1266" alt="Apertura del sito ELDOVANT su smartphone, in tema chiaro"></div>
+ </div>
+</div>
+
+<section id="brand">
+ <div class="two">
+  <div class="sh"><span class="mono">Il brand</span><h2>ELDOVANT, immagini e suono come un’unica opera.</h2><p>ELDOVANT si presenta come una casa di produzione indipendente per film originali, cortometraggi, serie e musica. Il sito doveva dare a questo marchio una sede ufficiale sobria e cinematografica, che mostri ogni titolo per quello che è, senza promettere di più.</p></div>
+  <div>
+   <div class="fact"><b>Cosa fa il brand</b><span>Film, cortometraggi, serie, colonne sonore e musica originali.</span></div>
+   <div class="fact"><b>Titolo in evidenza</b><span>IF I FORGET YOU, cortometraggio ELDOVANT, annunciato il 22 ottobre 2026 e attualmente in produzione.</span></div>
+   <div class="fact"><b>Lingue</b><span>Inglese e italiano, con pagine reali e distinte per ciascuna lingua.</span></div>
+   <div class="fact"><b>Negozio</b><span>Il menu rimanda allo Shop ELDOVANT (shop.eldovant.com), che è un sito separato.</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="lavoro">
+ <div class="sh"><span class="mono">Il lavoro di MANDAVEL</span><h2>Cosa è stato progettato e costruito.</h2><p>Le caratteristiche qui sotto sono quelle effettivamente presenti nel sito.</p></div>
+ <div class="grid3">
+  <div class="card"><span class="mono">01 · Apertura</span><h3>Un’ouverture con timecode</h3><p>La home si apre con il marchio, un timecode nella barra superiore e un invito a iniziare; l’apertura si può saltare.</p></div>
+  <div class="card"><span class="mono">02 · Percorso</span><h3>Una home a capitoli</h3><p>Apertura, produzione in evidenza, film e serie, lo studio, la visione, note di produzione e contatti, raggiungibili anche dal menu «In questa pagina».</p></div>
+  <div class="card"><span class="mono">03 · Titoli</span><h3>Pagina dedicata a ogni titolo</h3><p>Locandina, formato, stato, data di annuncio e un percorso di produzione che sposta la luce sulla fase in cui si trova il titolo.</p></div>
+  <div class="card"><span class="mono">04 · Video</span><h3>Annuncio in primo piano</h3><p>Il video YouTube si apre in una finestra sovrapposta e sceglie da solo il formato, verticale 9:16 oppure orizzontale 16:9.</p></div>
+  <div class="card"><span class="mono">05 · Lingue e temi</span><h3>EN/IT, chiaro e scuro</h3><p>Commutatore di lingua e di tema nella barra, con scelta ricordata nel browser. Il suono è facoltativo e parte solo su richiesta.</p></div>
+  <div class="card"><span class="mono">06 · Contatti</span><h3>Richieste instradate</h3><p>Il modulo indirizza collaborazioni, licenze, musica e stampa agli indirizzi ELDOVANT competenti, aprendo il programma di posta.</p></div>
+  <div class="card"><span class="mono">07 · Aggiornamento</span><h3>Un solo file di contenuti</h3><p>Titoli, stati e contatti si modificano in un unico file; uno script genera pagine titolo, anteprime social e sitemap.</p></div>
+  <div class="card"><span class="mono">08 · Ricerca</span><h3>Pronto per essere trovato</h3><p>Pagine statiche con titoli, canonical, hreflang EN/IT, Open Graph e dati strutturati, e un controllo del nome del sito prima di ogni pubblicazione.</p></div>
+  <div class="card"><span class="mono">09 · Accessibilità</span><h3>Attenzione all’uso reale</h3><p>Collegamento «salta al contenuto», etichette sui comandi e rispetto della preferenza di movimento ridotto.</p></div>
+ </div>
+</section>
+
+<section id="anteprime">
+ <div class="sh"><span class="mono">Anteprime</span><h2>Il sito, su desktop e su mobile.</h2><p>Schermate del sito ELDOVANT. Per esplorarlo dal vivo, usa il pulsante «Visita eldovant.com».</p></div>
+ <div class="tabs" role="tablist" aria-label="Versione del sito">
+  <button type="button" role="tab" id="t-d" aria-controls="p-d" aria-selected="true">Desktop</button>
+  <button type="button" role="tab" id="t-m" aria-controls="p-m" aria-selected="false" tabindex="-1">Mobile</button>
+ </div>
+ <div class="pan" id="p-d" role="tabpanel" aria-labelledby="t-d">
+  <div class="gal-d">
+   <figure><div class="bro"><div class="bar"><i></i><i></i><i></i><span>www.eldovant.com/en/</span></div><img loading="lazy" decoding="async" width="1440" height="900" src="../assets/eldovant/d-opening.jpg" alt="Apertura della home ELDOVANT in tema chiaro"></div><figcaption><b>Apertura · tema chiaro</b>Marchio, timecode, commutatori di suono, tema e lingua, menu.</figcaption></figure>
+   <figure><div class="bro"><div class="bar"><i></i><i></i><i></i><span>www.eldovant.com/en/</span></div><img loading="lazy" decoding="async" width="1440" height="900" src="../assets/eldovant/d-opening-dark.jpg" alt="Apertura della home ELDOVANT in tema scuro"></div><figcaption><b>Apertura · tema scuro</b>Lo stesso ingresso con la palette notturna e l’oro.</figcaption></figure>
+   <figure><div class="bro"><div class="bar"><i></i><i></i><i></i><span>www.eldovant.com/en/productions/</span></div><img loading="lazy" decoding="async" width="1440" height="900" src="../assets/eldovant/d-productions.jpg" alt="Pagina Productions con la locandina di IF I FORGET YOU"></div><figcaption><b>Productions</b>I titoli appaiono come fotogrammi, con stato e formato.</figcaption></figure>
+   <figure><div class="bro"><div class="bar"><i></i><i></i><i></i><span>www.eldovant.com/en/productions/if-i-forget-you/</span></div><img loading="lazy" decoding="async" width="1440" height="900" src="../assets/eldovant/d-title.jpg" alt="Pagina del titolo IF I FORGET YOU"></div><figcaption><b>Pagina titolo</b>Formato, stato, data di annuncio e produzione.</figcaption></figure>
+   <figure><div class="bro"><div class="bar"><i></i><i></i><i></i><span>www.eldovant.com/en/</span></div><img loading="lazy" decoding="async" width="1440" height="900" src="../assets/eldovant/d-slate.jpg" alt="Sezione The slate con elenco per formato e locandina"></div><figcaption><b>The slate</b>Elenco per formato accanto alla locandina del titolo.</figcaption></figure>
+   <figure><div class="bro"><div class="bar"><i></i><i></i><i></i><span>www.eldovant.com/en/studio/</span></div><img loading="lazy" decoding="async" width="1440" height="900" src="../assets/eldovant/d-studio.jpg" alt="Pagina The Studio con l’orizzonte curvo e il bagliore dorato"></div><figcaption><b>The Studio</b>Titolo in grande serif e orizzonte curvo con bagliore dorato.</figcaption></figure>
+   <figure class="last"><div class="bro"><div class="bar"><i></i><i></i><i></i><span>www.eldovant.com/en/</span></div><img loading="lazy" decoding="async" width="1440" height="900" src="../assets/eldovant/d-menu.jpg" alt="Menu a schermo intero con Home, Productions, The Studio, Contact e Shop"></div><figcaption><b>Menu a schermo intero</b>Cinque voci, il link allo Shop e l’indice «In questa pagina».</figcaption></figure>
+  </div>
+ </div>
+ <div class="pan" id="p-m" role="tabpanel" aria-labelledby="t-m" hidden>
+  <div class="gal-m">
+   <figure><div class="phone"><img loading="lazy" decoding="async" width="585" height="1266" src="../assets/eldovant/m-opening.jpg" alt="Apertura su smartphone"></div><figcaption><b>Apertura</b>Marchio a tutta larghezza e comandi compatti.</figcaption></figure>
+   <figure><div class="phone"><img loading="lazy" decoding="async" width="585" height="1266" src="../assets/eldovant/m-featured.jpg" alt="Titolo in evidenza su smartphone"></div><figcaption><b>Titolo in evidenza</b>Locandina, stato, sinossi e invito a guardare l’annuncio.</figcaption></figure>
+   <figure><div class="phone"><img loading="lazy" decoding="async" width="585" height="1266" src="../assets/eldovant/m-productions.jpg" alt="Pagina Productions su smartphone"></div><figcaption><b>Productions</b>Il fotogramma del titolo adattato al formato verticale.</figcaption></figure>
+   <figure><div class="phone"><img loading="lazy" decoding="async" width="585" height="1266" src="../assets/eldovant/m-menu.jpg" alt="Menu su smartphone"></div><figcaption><b>Menu</b>Voci principali, Shop e indice della pagina.</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section id="sistema">
+ <div class="sh"><span class="mono">Sistema visivo</span><h2>Carta calda, inchiostro e oro.</h2><p>Identità e tipografia del sito, ricavate dal suo codice: una palette neutra e calda con un solo accento, l’oro, e tre caratteri con ruoli distinti. Tutti i caratteri sono incorporati nelle pagine.</p></div>
+ <div class="sw" role="list">
+  <div role="listitem"><i style="background:#e5e2d9"></i><span><b>Carta</b>#E5E2D9</span></div>
+  <div role="listitem"><i style="background:#ece5d3"></i><span><b>Avorio</b>#ECE5D3</span></div>
+  <div role="listitem"><i style="background:#14120e"></i><span><b>Inchiostro</b>#14120E</span></div>
+  <div role="listitem"><i style="background:#070605"></i><span><b>Notte</b>#070605</span></div>
+  <div role="listitem"><i style="background:#c9a45c"></i><span><b>Oro · scuro</b>#C9A45C</span></div>
+  <div role="listitem"><i style="background:#82632a"></i><span><b>Oro · chiaro</b>#82632A</span></div>
+ </div>
+ <div class="ty">
+  <div><div class="a">Cormorant Garamond</div><small>Titoli e display, peso leggero.</small></div>
+  <div><div class="b">Instrument Sans</div><small>Testi e comandi.</small></div>
+  <div><div class="c">DM Mono</div><small>Timecode, etichette e stati.</small></div>
+ </div>
+</section>
+
+<section id="scheda">
+ <div class="sh"><span class="mono">Scheda tecnica</span><h2>Struttura e tecnologia.</h2></div>
+ <dl class="spec">
+  <dt>Autore</dt><dd>MANDAVEL, progettazione e realizzazione</dd>
+  <dt>Brand</dt><dd>ELDOVANT, Original Motion Pictures &amp; Music</dd>
+  <dt>Indirizzo</dt><dd><a href="https://www.eldovant.com" target="_blank" rel="noopener">www.eldovant.com</a></dd>
+  <dt>Pagine</dt><dd>Home, Productions, pagina titolo, The Studio, Contact, Privacy, Cookie e Termini di servizio, ciascuna in inglese e italiano.</dd>
+  <dt>Tecnologia</dt><dd>Sito statico in HTML, CSS e JavaScript, con contenuti da un unico file dati e uno script di generazione eseguito da GitHub Actions; pubblicato su GitHub Pages.</dd>
+  <dt>Esperienza</dt><dd>Apertura con timecode, tema chiaro e scuro, commutatore EN/IT, suono facoltativo, menu a schermo intero, annuncio video in sovrimpressione.</dd>
+  <dt>Dispositivi</dt><dd>Layout dedicati per desktop e mobile.</dd>
+ </dl>
+</section>
+
+<section class="cta" id="visita">
+ <span class="mono">Un progetto reale</span>
+ <h2>Esplora ELDOVANT dal vivo.</h2>
+ <p>Il sito è online: apri eldovant.com per sfogliarlo, cambiare lingua e tema e vedere come risponde su ogni schermo.</p>
+ <div class="act"><a class="btn pri" href="https://www.eldovant.com" target="_blank" rel="noopener">Visita eldovant.com ↗</a><a class="btn" href="#inizio">Torna all’inizio</a></div>
+</section>
+</main>
+<footer><div class="wrap" style="width:100%">ELDOVANT Official Website · progetto MANDAVEL per ELDOVANT. Le immagini sono schermate del sito; marchio, locandina e contenuti appartengono a ELDOVANT.</div></footer>
+</div>
+<script>
+(function(){
+ var t=[].slice.call(document.querySelectorAll('.tabs [role=tab]'));
+ function sel(b){t.forEach(function(x){var on=x===b;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on})}
+ t.forEach(function(b,i){b.addEventListener('click',function(){sel(b)});
+  b.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:-1;if(n<0)return;n=(n+t.length)%t.length;t[n].focus();sel(t[n]);e.preventDefault()})});
+})();
+</script>
+</body>
+</html>
